@@ -1,0 +1,14 @@
+# OS generated files #
+######################
+.Trashes
+
+# Application generated files #
+###############################
+# Vim #
+*~
+*.swp
+*.swo
+
+# Various #
+###########
+dropbox.py
