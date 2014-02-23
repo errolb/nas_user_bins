@@ -1,3 +1,3 @@
 # NAS maintenance scripts
 
-User scripts for /home/<user>/bin that help me maintain my media server.
+User scripts for /home/user-name/bin that help me maintain my media server.
