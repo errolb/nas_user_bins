@@ -21,6 +21,21 @@ for i in /media/media0[0-$count_hdd]/entertainment/tv\ shows/live\ action/* ; do
 
 done
 
+# ******************** TV SHOWS ASIAN ********************* #
+
+# clean dir
+rm -f $HOME/.all_media_symlinks/tvshows_asian/*
+
+for i in /media/media0[0-$count_hdd]/entertainment/tv\ shows/asian\ live\ action/* ; do
+    
+    # changing spaces and parenthesis to underscores for symlink
+    linkname=$(echo $(basename "$i") | sed -re 's/\s/_/g;s/[(]//g;s/[)]//g')
+    linkpath="$HOME/.all_media_symlinks/tvshows_asian/$linkname"
+    
+    ln -s "$i" $linkpath
+
+done
+
 # ******************** MOVIES ********************* #
 
 # clean dir
