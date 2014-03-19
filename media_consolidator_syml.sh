@@ -55,3 +55,23 @@ done
 # add spaces and parethesis wrapped dates for better media scraping
 cd $HOME/.all_media_symlinks/movies_live_action
 rename 's/_/ /g;s/(\d\d\d\d$)/\($1\)/' *
+
+# ******************** MOVIES ASIAN********************* #
+
+# clean dir
+rm -f $HOME/.all_media_symlinks/movies_asian/*
+
+for i in /media/media0[0-$count_hdd]/entertainment/films/asian\ live\ action/* ; do
+    
+    # changing spaces and parenthesis to underscores for symlink
+	# as I couldn't get the ln to play nice with spaces
+    linkname=$(echo $(basename "$i") | sed -re 's/\s/_/g;s/[(]//g;s/[)]//g')
+    linkpath="$HOME/.all_media_symlinks/movies_asian/$linkname"
+    
+    ln -s "$i" $linkpath
+
+done
+
+# add spaces and parethesis wrapped dates for better media scraping
+cd $HOME/.all_media_symlinks/movies_asian
+rename 's/_/ /g;s/(\d\d\d\d$)/\($1\)/' *
