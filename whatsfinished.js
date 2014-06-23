@@ -8,8 +8,9 @@ fs.readdir(complete_dir, function(err, files){
 	
 	if (err) throw err;
 	
+	var username = process.env.USER;	
 	var write_name = 'completed.md';
-	var complete_path 	= '/media/media02/downloads/complete/' + write_name;
+	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + write_name;
 	var markdown = "# Completed Files\n\n";
 	var markdown = markdown + "---\n\n";
 
