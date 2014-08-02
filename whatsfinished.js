@@ -2,13 +2,44 @@
 
 var fs = require('fs');
 var moment = require('moment');
+var async = require('async');
 
+// base globals
+var username = process.env.USER;	
+var watch_folder = '/home/' + username + '/Dropbox/_global/_torrent_watch'
 var complete_dir = '/media/media02/downloads/complete';
+
+// move all *.added files in the _watch directory to the added directory
+fs.readdir(watch_folder, function(err, files) {
+	var added_torrents = (function(){
+		var list = [];
+		for (i in files) {
+			if (files[i].match(/\.added$/)) list.push(files[i]);
+		}
+		return list;
+	})();
+
+	async.each(added_torrents,
+		function(file, callback) {
+			var old_path = watch_folder + '/' + file;
+			var new_path = watch_folder + '/added/' + file;
+	
+			fs.rename(old_path, new_path, function(){
+				console.log('.added file moved');
+				callback();
+			});
+		},
+		function(err) {
+			console.log('all .added files moved to added directory');
+		}
+	);	
+
+});
+
 fs.readdir(complete_dir, function(err, files){
 	
 	if (err) throw err;
 	
-	var username = process.env.USER;	
 	var write_name = 'completed.md';
 	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + write_name;
 	var markdown = "# Completed Files\n\n";
@@ -27,6 +58,6 @@ fs.readdir(complete_dir, function(err, files){
 
 	fs.writeFile(complete_path, markdown, function(err){ 
 		if (err) throw err;
-		console.log('Files written!');
+		console.log('Completed list updated.');
 	});
 });

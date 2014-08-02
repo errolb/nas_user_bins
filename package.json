@@ -1,0 +1,25 @@
+{
+  "name": "bin",
+  "version": "0.0.0",
+  "private": true,
+  "description": "User scripts for /home/user-name/bin that help me maintain my media server.",
+  "main": "whatsfinished.js",
+  "dependencies": {
+    "async": "^0.9.0",
+    "moment": "^2.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/errolb/nas_user_bins.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/errolb/nas_user_bins/issues"
+  },
+  "homepage": "https://github.com/errolb/nas_user_bins"
+}
