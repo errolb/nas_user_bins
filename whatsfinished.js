@@ -40,15 +40,14 @@ fs.readdir(complete_dir, function(err, files){
 	
 	if (err) throw err;
 	
-	var write_name = 'completed.md';
-	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + write_name;
+	var list_name = 'completed.md';
+	var ignore_list = [list_name, '.DS_Store','._.DS_Store'];
+	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + list_name;
 	var markdown = "# Completed Files\n\n";
 	var markdown = markdown + "---\n\n";
 
 	for (var i = 0; i <= files.length - 1; i++) {
-		if (files[i] != write_name) {
-			markdown = markdown + " - " + files[i] + "\n";
-		}	
+		if (!(ignore_list.indexOf(files[i]) > -1)) markdown = markdown + " - " + files[i] + "\n";
 	}
 	
 	var time_written = moment().format('MMMM Do YYYY, h:mm:ss a');
