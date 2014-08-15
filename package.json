@@ -6,7 +6,9 @@
   "main": "whatsfinished.js",
   "dependencies": {
     "async": "^0.9.0",
-    "moment": "^2.7.0"
+    "cheerio": "^0.17.0",
+    "moment": "^2.7.0",
+    "request": "^2.40.0"
   },
   "devDependencies": {},
   "scripts": {
