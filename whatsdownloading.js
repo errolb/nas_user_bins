@@ -26,7 +26,7 @@ function processSites(url1, url2, callback) {
 						fs.readdir(incompleteDir, function(err, files) {
 							if (err) throw err;
 							callback(body1, body2, files)
-						}
+						});
 					}
 				});
 			}
@@ -50,11 +50,15 @@ processSites(transmissionUrl,sabNzbdUrl, function(body1, body2, files){
 				Math.round(body1.jobs[i].mb) + " | " +
 				body1.jobs[i].timeleft + "\n";
 	}
-	
+
 	// write incomplete transmission files	
+	markdown = markdown + "\n## Transmission `( " + files.length + " )`\n\n" + 
+					"Filename | n \n" + 
+					"--- | --- \n";
+
 	for (var i = 0; i <= files.length - 1; i++) {
 		if (!(ignore_list.indexOf(files[i]) > -1)) markdown = markdown + 
-												" - " + files[i] + "\n";
+											files[i] + " | " + i + "\n";
 	}
 
 	var time_written = moment().format('MMMM Do YYYY, h:mm:ss a');

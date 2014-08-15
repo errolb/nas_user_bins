@@ -41,7 +41,7 @@ fs.readdir(complete_dir, function(err, files){
 	if (err) throw err;
 	
 	var list_name = 'completed.md';
-	var ignore_list = [list_name, '.DS_Store','._.DS_Store'];
+	var ignore_list = [list_name, '.DS_Store','._.DS_Store','downloading.md'];
 	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + list_name;
 	var markdown = "# Completed Files\n\n";
 	var markdown = markdown + "---\n\n";
