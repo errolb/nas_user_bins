@@ -13,4 +13,8 @@
 ###########
 dropbox.py
 node_modules
+
+# Security #
+###########
 secretCouchPotatoKey
+secretSabnzbdKey

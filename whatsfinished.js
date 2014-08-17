@@ -6,14 +6,14 @@ var async = require('async');
 
 // base globals
 var username = process.env.USER;	
-var watch_folder = '/home/' + username + '/Dropbox/_global/_torrent_watch'
+var watch_folder = '/home/' + username + '/Dropbox/_global/_torrent_watch';
 var complete_dir = '/media/media02/downloads/complete';
 
 // move all *.added files in the _watch directory to the added directory
 fs.readdir(watch_folder, function(err, files) {
 	var added_torrents = (function(){
 		var list = [];
-		for (i in files) {
+		for (var i in files) {
 			if (files[i].match(/\.added$/)) list.push(files[i]);
 		}
 		return list;
@@ -41,10 +41,10 @@ fs.readdir(complete_dir, function(err, files){
 	if (err) throw err;
 	
 	var list_name = 'completed.md';
-	var ignore_list = [list_name, '.DS_Store','._.DS_Store','downloading.md'];
+	var ignore_list = [list_name, '.DS_Store','._.DS_Store','downloading.md','movielist.md'];
 	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + list_name;
 	var markdown = "# Completed Files\n\n";
-	var markdown = markdown + "---\n\n";
+	markdown = markdown + "---\n\n";
 
 	for (var i = 0; i <= files.length - 1; i++) {
 		if (!(ignore_list.indexOf(files[i]) > -1)) markdown = markdown + " - " + files[i] + "\n";
