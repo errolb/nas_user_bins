@@ -8,10 +8,10 @@ var fs = require('fs'),
 var username = process.env.USER;	
 var watchFolder = '/home/' + username + '/Dropbox/_global/_torrent_watch',
 	incompleteDir ='/media/media02/downloads/incomplete';
-var	transmissionApiKey = 'f28203358c8d11803afdc2e136414848';	
-	transmissionUrl = 'http://localhost:8080/api?mode=qstatus&output=json&apikey=' + 
-						transmissionApiKey;
-var	realSAB = 'localhost:9091/transmission/web';
+var	sabNzbdApiKey = 'f28203358c8d11803afdc2e136414848';	
+	sabNzbdUrl = 'http://localhost:8080/api?mode=qstatus&output=json&apikey=' + 
+						sabNzbdApiKey;
+//var	realSAB = 'localhost:9091/sabNzbd/web';
 
 function processSites(url1, callback) {
 	fs.readdir(watchFolder, function(err, files) {
@@ -26,7 +26,7 @@ function processSites(url1, callback) {
 		});
 	});
 }
-processSites(transmissionUrl,function(body1, files){
+processSites(sabNzbdUrl,function(body1, files){
 	body1 = JSON.parse(body1);
 	var list_name = 'downloading.md';
 	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + list_name;
