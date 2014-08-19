@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var fs = require('fs');
 var moment = require('moment');
 var request = require('request');
@@ -7,9 +8,10 @@ var request = require('request');
 var username = process.env.USER;	
 var	url = 'http://localhost:5050/api/'; 
 var query = '/media.list';
+var secretKeyPath = '/home/' + username + '/bin/';
 
 function processSites(callback) {
-	fs.readFile('secretCouchPotatoKey', 'utf8', function(err, data){
+	fs.readFile(secretKeyPath + 'secretCouchPotatoKey', 'utf8', function(err, data){
 		if (err) throw err;
 		var fullUrl = (url + data + query);
 		fullUrl =  fullUrl.replace(/(\r\n|\n|\r)/gm,'');
@@ -40,8 +42,8 @@ processSites(function(body) {
 		if (body.movies[i].status === 'done') {
 			markdown = markdown + i + ' | ' +
 					body.movies[i].info.original_title + ' | ' +
-					body.movies[i].info.rating.imdb[0] + ' / ' +
-					body.movies[i].info.rating.imdb[1] + ' | ' +
+					( body.movies[i].info.rating ? body.movies[i].info.rating.imdb[0] + '/' + 
+					  body.movies[i].info.rating.imdb[1]  : '') + ' | ' +
 					body.movies[i].info.genres.toString().replace(/,/g,', ') + ' | ' +
 					body.movies[i].info.year + '\n';
 		}
