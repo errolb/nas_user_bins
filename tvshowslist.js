@@ -11,9 +11,10 @@ var sickBeardUrl = 'http://localhost:8081/api/';
 var query = '?cmd=shows&sort=name';
 var listName = 'tvshowslist.md';
 var completePath 	= writeDir + '/' + listName;
+var secretKeyPath = '/home/' + username + '/bin/';
 
 function processSites(callback) {
-	fs.readFile('secretSickBeardKey', 'utf8', function(err, apiKey) {
+	fs.readFile(secretKeyPath + 'secretSickBeardKey', 'utf8', function(err, apiKey) {
 		if (err) throw err;
 		var fullUrl = sickBeardUrl + apiKey + '/' + query;
 		fullUrl =  fullUrl.replace(/(\r\n|\n|\r)/gm,'');

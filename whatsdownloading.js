@@ -11,10 +11,11 @@ var	incompleteDir ='/media/media02/downloads/incomplete';
 var sabNzbdUrl = 'http://localhost:8080/api?mode=qstatus&output=json&apikey='; 
 var listName = 'downloading.md';
 var completePath 	= watchFolder + '/' + listName;
+var secretKeyPath = '/home/' + username + '/bin/';
 var ignoreList = ['.DS_Store','._.DS_Store'];
 
 function processSites(callback) {
-	fs.readFile('secretSabnzbdKey', 'utf8', function(err, data) {
+	fs.readFile(secretKeyPath + 'secretSabnzbdKey', 'utf8', function(err, data) {
 		if (err) throw err;
 		fs.readdir(watchFolder, function(err, files) {
 			if (err) throw err;
