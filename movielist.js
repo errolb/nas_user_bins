@@ -1,55 +1,41 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var moment = require('moment');
-var request = require('request');
+var fs = require('fs'),
+	moment = require('moment'),
+	request = require('request');
 
-//base globals
+// globals
 var username = process.env.USER;	
-var	url = 'http://localhost:5050/api/'; 
-var query = '/media.list';
-var secretKeyPath = '/home/' + username + '/bin/';
+var lookUpDir ='/home/' + username + '/.all_media_symlinks/movies_live_action';
+var writeFolder = '/home/' + username + '/Dropbox/_global/_torrent_watch';
+var listName = 'movielist.md';
+var completePath 	= writeFolder + '/' + listName;
 
-function processSites(callback) {
-	fs.readFile(secretKeyPath + 'secretCouchPotatoKey', 'utf8', function(err, data){
+function processDir(callback) {
+	fs.readdir(lookUpDir, function(err, files) {
 		if (err) throw err;
-		var fullUrl = (url + data + query);
-		fullUrl =  fullUrl.replace(/(\r\n|\n|\r)/gm,'');
-		request(fullUrl, function(error, response, body) {
-			if (!error && response.statusCode == 200) {
-				callback(JSON.parse(body));
-			}
-		});
+		callback(files);
 	});
 }
 
-processSites(function(body) {
-	var fileToWrite = 'movielist.md';
-	var fullWritePath = '/home/' + username + '/Dropbox/_global/_torrent_watch/' +
-					fileToWrite;
-	var timeWritten = moment().format('MMMM Do YYYY, h:mm:ss a');
-	var pageTitle = '# Live Movie List';
-	var columnHeadings = '~ | Title | IMDB | Genres | Year';
-	var columnSeperators = '- | ----- | ---- | ------ | ----';
-	var markdown;
+processDir(function(files) {
+	var md = '';
+	var title = '# Live Movies List';
+	var timeWritten = 'Updated: __' + moment().format('MMMM Do YYYY, h:mm:ss a') + '__';
 
-	markdown = pageTitle + '\n\n' + 
-			   'Updated: ' + timeWritten + '\n\n' +
-			   columnHeadings + '\n' +
-			   columnSeperators + '\n';
+	md = md +
+		title + '\n\n' +
+		timeWritten + '\n\n' +
+		'~ | Title\n' +
+		'- | -----\n';
 
-	for (var i in body.movies) {
-		if (body.movies[i].status === 'done') {
-			markdown = markdown + i + ' | ' +
-					body.movies[i].info.original_title + ' | ' +
-					( body.movies[i].info.rating ? body.movies[i].info.rating.imdb[0] + '/' + 
-					  body.movies[i].info.rating.imdb[1]  : '') + ' | ' +
-					body.movies[i].info.genres.toString().replace(/,/g,', ') + ' | ' +
-					body.movies[i].info.year + '\n';
-		}
+	for (var i in files) {
+		md = md +
+			i + ' | ' +
+			files[i] + '\n';
 	}
 
-	fs.writeFile(fullWritePath, markdown, function(err){ 
+	fs.writeFile(completePath, md, function(err){ 
 		if (err) throw err;
 		console.log('Live Movie List updated.');
 	});
