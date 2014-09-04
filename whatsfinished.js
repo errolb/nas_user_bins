@@ -10,33 +10,6 @@ var writeDir = '/home/' + username + '/Dropbox/_global/_live_lists';
 var complete_dir = '/media/media02/downloads/complete';
 var watch_folder = '/home/' + username + 'Dropbox/_global/_torrent_watch';
 
-// move all *.added files in the _watch directory to the added directory
-fs.readdir(watch_folder, function(err, files) {
-	var added_torrents = (function(){
-		var list = [];
-		for (var i in files) {
-			if (files[i].match(/\.added$/)) list.push(files[i]);
-		}
-		return list;
-	})();
-
-	async.each(added_torrents,
-		function(file, callback) {
-			var old_path = watch_folder + '/' + file;
-			var new_path = watch_folder + '/added/' + file;
-	
-			fs.rename(old_path, new_path, function(){
-				console.log('.added file moved');
-				callback();
-			});
-		},
-		function(err) {
-			console.log('all .added files moved to added directory');
-		}
-	);	
-
-});
-
 fs.readdir(complete_dir, function(err, files){
 	
 	if (err) throw err;
