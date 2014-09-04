@@ -6,8 +6,9 @@ var async = require('async');
 
 // base globals
 var username = process.env.USER;	
-var watch_folder = '/home/' + username + '/Dropbox/_global/_torrent_watch';
+var writeDir = '/home/' + username + '/Dropbox/_global/_live_lists';
 var complete_dir = '/media/media02/downloads/complete';
+var watch_folder = '/home/' + username + 'Dropbox/_global/_torrent_watch';
 
 // move all *.added files in the _watch directory to the added directory
 fs.readdir(watch_folder, function(err, files) {
@@ -42,7 +43,7 @@ fs.readdir(complete_dir, function(err, files){
 	
 	var list_name = 'completed.md';
 	var ignore_list = [list_name, '.DS_Store','._.DS_Store','downloading.md','movielist.md'];
-	var complete_path 	= '/home/' + username + '/Dropbox/_global/_torrent_watch/' + list_name;
+	var complete_path 	= '/home/' + username + '/Dropbox/_global/_live_lists/' + list_name;
 	var markdown = "# Completed Files\n\n";
 	markdown = markdown + "---\n\n";
 

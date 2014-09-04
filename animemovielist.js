@@ -7,7 +7,7 @@ var fs = require('fs'),
 // globals
 var username = process.env.USER;	
 var lookUpDir ='/home/' + username + '/.all_media_symlinks/movies_anime';
-var writeFolder = '/home/' + username + '/Dropbox/_global/_torrent_watch';
+var writeFolder = '/home/' + username + '/Dropbox/_global/_live_lists';
 var listName = 'animemovielist.md';
 var completePath 	= writeFolder + '/' + listName;
 

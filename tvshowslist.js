@@ -6,7 +6,7 @@ var fs = require('fs'),
 
 // base globals
 var username = process.env.USER;	
-var writeDir = '/home/' + username + '/Dropbox/_global/_torrent_watch';
+var writeDir = '/home/' + username + '/Dropbox/_global/_live_lists';
 var sickBeardUrl = 'http://localhost:8081/api/';
 var query = '?cmd=shows&sort=name';
 var listName = 'tvshowslist.md';

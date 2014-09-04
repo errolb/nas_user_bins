@@ -6,7 +6,7 @@ var fs = require('fs'),
 
 // base globals
 var username = process.env.USER;	
-var watchFolder = '/home/' + username + '/Dropbox/_global/_torrent_watch';
+var watchFolder = '/home/' + username + '/Dropbox/_global/_live_lists';
 var	incompleteDir ='/media/media02/downloads/incomplete';
 var sabNzbdUrl = 'http://localhost:8080/api?mode=qstatus&output=json&apikey='; 
 var listName = 'downloading.md';
