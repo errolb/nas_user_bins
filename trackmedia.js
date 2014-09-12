@@ -25,24 +25,27 @@ fs.readdir(torrentsComplete, function(err, folders) {
 	fs.writeFile(listsDir + listName, md, function(err) {
 		if (err) throw err;
 		async.each(folders, function(folder, callback) {
+			// do not use ignored files
 			if (!( ignorelist.indexOf(folder) > -1 )) {
 				fs.readdir(torrentsComplete + folder + '/', function(err, files) {
-					md = '';
-					md = md +
-						'\n## ' + folder + '\n\n' +
-						'~ | Title\n' +
-						'- | -----\n';
-
-					for (var i in files) {
+					// only print stuff out if folder has files
+					if (files.length) {
+						md = '';
 						md = md +
-							i + ' | ' +
-							files[i] + '\n';
-					}
-					
-					fs.appendFile(listsDir + listName, md, function(err) {
-						if (err) throw err;
-						callback();
-					});
+							'\n## ' + folder + '\n\n' +
+							'~ | Title\n' +
+							'- | -----\n';
+
+						for (var i in files) {
+							md = md +
+								i + ' | ' +
+								files[i] + '\n';
+						}
+						fs.appendFile(listsDir + listName, md, function(err) {
+							if (err) throw err;
+							callback();
+						});
+					}					
 				});
 			}
 		}, function(err) {
