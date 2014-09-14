@@ -70,9 +70,9 @@ crawlDirs(torrentsComplete, 'torrents_complete.md');
 // all stored media
 crawlDirs(staticMedia, 'all_media.md');
 
-/**************
- * TV SHOW STATS
-****************/
+/**********
+ * TV STATS
+***********/
 
 function processSB(listName, callback) {
 	fs.readFile(keyPath + 'secretSickBeardKey', 'utf8', function(err, apiKey) {
@@ -87,13 +87,13 @@ function processSB(listName, callback) {
 	});
 }
 
-processSB('tv_show_stats.md', function(listName, shows){
+processSB('show_stats.md', function(listName, shows){
 	shows = JSON.parse(shows);
 	let md = '',
-	title = '# Live TV Shows Stats List\n\n',
+	title = '# Shows Stats List\n\n',
 	timeUpdated = 'Updated: __' + moment().format('MMMM Do YYYY, h:mm:ss a') + '__\n\n',
-	tableHeadings = '~ | Show Name | Quality | Network | Status | Next Ep Airdate\n',
-	tableSeperators = '- | --------- | ------- | ------- | ------ | ---------------\n',
+	tableHeadings = '~ | Name | Quality | N | Status | Next Ep\n',
+	tableSeperators = '- | ---- | ------- | - | ------ | --------\n',
 	count = 0;
 
 	md = md + title + timeUpdated + tableHeadings + tableSeperators;
