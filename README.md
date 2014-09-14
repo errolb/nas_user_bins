@@ -1,3 +1,3 @@
 # NAS maintenance scripts
 
-User scripts that help me maintain my media server.
+Scripts that help me maintain my media server.
