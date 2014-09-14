@@ -10,7 +10,11 @@ var listsDir = '/home/' + username + '/Dropbox/_global/_live_lists/',
 	torrentsComplete = '/media/media02/downloads/complete/',
 	ignorelist = [ '.DS_Store','._.DS_Store' ];
 
-// rtorrent
+/****************
+ * EXISTING MEDIA
+ ****************/
+
+// rtorrent downloads
 fs.readdir(torrentsComplete, function(err, folders) {
 	if (err) throw err;
 	var listName = 'completed.md',
