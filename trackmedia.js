@@ -23,7 +23,7 @@ function crawlDirs(rootDir, listName) {
 	fs.readdir(rootDir, function(err, folders) {
 		if (err) throw err;
 		let	md = '',
-			title = '# Live Complete List',
+			title = '# Live List',
 			timeWritten = 'Updated: __' + moment().format('MMMM Do YYYY, h:mm:ss a') + '__';
 
 		md = md +
