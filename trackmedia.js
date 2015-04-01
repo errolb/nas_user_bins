@@ -121,7 +121,7 @@ processSB('show_stats.md', function(listName, shows){
 // torrents incomplete
 crawlDirs(torrentsIncomplete, 'torrents_incomplete.md');
 
-function processSABnzdb(listName, callback) {
+/* function processSABnzdb(listName, callback) {
 	fs.readFile(keyPath + 'secretSabnzbdKey', 'utf8', function(err, apiKey) {
 		if (err) throw err;
 		let fullUrl = sabNzbdUrl + apiKey;
@@ -155,3 +155,4 @@ processSABnzdb('sabnzdb_incomplete.md', function(listName, sabData){
 		if (err) throw err;
 	});
 });
+*/
